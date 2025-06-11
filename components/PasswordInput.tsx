@@ -10,7 +10,7 @@ import {
   View,
 } from "react-native";
 export interface InputProps {
-  onChange: (field: string, value: any) => void;
+  onChange: (field: string, value: string) => void;
   value: string;
   field: string;
   placeholder: string;

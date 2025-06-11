@@ -2,7 +2,7 @@ import { colors } from "@/constants/colors";
 import { fonts } from "@/constants/fonts";
 import { buttonSizes, sizes } from "@/constants/sizes";
 import React from "react";
-import { Pressable, Text } from "react-native";
+import { Pressable, StyleProp, Text, TextStyle, ViewStyle } from "react-native";
 
 interface Props {
   text: string;
@@ -26,19 +26,19 @@ const Button = ({ text, onClick, variant, size, state = "enabled" }: Props) => {
 
 export default Button;
 
-const genericButtonStyle: any = {
+const genericButtonStyle: StyleProp<ViewStyle> = {
   paddingVertical: sizes.m,
   borderRadius: sizes.xs,
   justifyContent: "center",
   alignItems: "center",
 };
 
-const genericTextStyle = {
+const genericTextStyle: StyleProp<TextStyle> = {
   fontFamily: fonts.inter.bold,
   fontSize: sizes.m,
 };
 
-const styleVariant: any = {
+const styleVariant = {
   primary: {
     enabled: {
       button: {

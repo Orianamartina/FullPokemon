@@ -7,10 +7,6 @@ import { StyleSheet, Text, View } from "react-native";
 import Button from "./Button";
 import FormInput from "./FormInput";
 import PasswordInput from "./PasswordInput";
-const rules = {
-  fullName: { required: true },
-  password: { required: true, minLength: 6 },
-};
 
 const LoginForm = () => {
   const router = useRouter();

@@ -2,8 +2,8 @@ import { colors } from "@/constants/colors";
 import { sizes } from "@/constants/sizes";
 import { KeyboardTypeOptions, StyleSheet, TextInput } from "react-native";
 export interface InputProps {
-  onChange: (field: string, value: any) => void;
-  value?: string;
+  onChange: (field: string, value: string) => void;
+  value: string;
   field: string;
   placeholder: string;
   keyboardType?: KeyboardTypeOptions;
