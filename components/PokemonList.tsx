@@ -3,13 +3,20 @@ import { fonts } from "@/constants/fonts";
 import { sizes } from "@/constants/sizes";
 import { usePokemon } from "@/hooks/pokemon/usePokemon";
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import Button from "./ui/Button";
 import Card from "./ui/Card";
 
 const PokemonList = () => {
   const { pokemonList, loading, error } = usePokemon();
 
+  if (loading) return <ActivityIndicator />;
   return (
     <View style={style.container}>
       <View style={style.title}>
@@ -21,6 +28,7 @@ const PokemonList = () => {
           size={50}
         ></Button>
       </View>
+      {error && <Text>Error: {error.message}</Text>}
       <FlatList
         data={pokemonList}
         renderItem={({ item }) => (
@@ -28,7 +36,6 @@ const PokemonList = () => {
             <Card {...item} />
           </View>
         )}
-        style={style.list}
         numColumns={2}
         columnWrapperStyle={{
           justifyContent: "flex-start",
@@ -64,10 +71,5 @@ const style = StyleSheet.create({
     color: colors.primaryBase,
     fontFamily: fonts.epilogue.bold,
     fontSize: sizes.l,
-  },
-  list: {
-    // display: "flex",
-    // flexDirection: "row",
-    // flexWrap: "wrap",
   },
 });

@@ -1,7 +1,6 @@
 import { StyleProp, TextStyle } from "react-native";
 
 export const colors = {
-  // Existing colors
   primaryBase: "#01164D",
   primaryLight: "#345978",
   secondaryBase: "#4f80ff",
