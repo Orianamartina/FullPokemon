@@ -1,6 +1,6 @@
 import { colors } from "@/constants/colors";
 import { fonts } from "@/constants/fonts";
-import { buttonSizes, sizes } from "@/constants/sizes";
+import { sizes } from "@/constants/sizes";
 import React from "react";
 import { Pressable, StyleProp, Text, TextStyle, ViewStyle } from "react-native";
 
@@ -8,7 +8,7 @@ interface Props {
   text: string;
   onClick: () => void;
   variant: "primary" | "secondary";
-  size: "large" | "small";
+  size: number;
   state?: "enabled" | "disabled";
 }
 
@@ -16,7 +16,7 @@ const Button = ({ text, onClick, variant, size, state = "enabled" }: Props) => {
   const variantStyles = styleVariant[variant][state];
   return (
     <Pressable
-      style={[genericButtonStyle, buttonSizes[size], variantStyles.button]}
+      style={[genericButtonStyle, { width: size }, variantStyles.button]}
       onPress={onClick}
     >
       <Text style={[genericTextStyle, variantStyles.text]}>{text}</Text>

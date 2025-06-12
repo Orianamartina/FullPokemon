@@ -25,4 +25,10 @@ export const fontStyles = {
     fontFamily: fonts.inter.bold,
     fontSize: fontSizes.body,
   },
+  caption: {
+    bold: {
+      fontFamily: fonts.inter.bold,
+      fontSize: fontSizes.caption,
+    },
+  },
 };

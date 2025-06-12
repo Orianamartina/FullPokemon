@@ -20,10 +20,6 @@ export const sizes = {
 };
 
 export const buttonSizes = {
-  large: {
-    width: 200,
-  },
-  small: {
-    width: 130,
-  },
+  large: 200,
+  small: 130,
 };

@@ -1,12 +1,12 @@
 import { colors } from "@/constants/colors";
 import { fontStyles } from "@/constants/fonts";
-import { sizes } from "@/constants/sizes";
+import { buttonSizes, sizes } from "@/constants/sizes";
 import { useRouter } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Button from "./Button";
-import FormInput from "./FormInput";
-import PasswordInput from "./PasswordInput";
+import Button from "./ui/Button";
+import FormInput from "./ui/FormInput";
+import PasswordInput from "./ui/PasswordInput";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -39,7 +39,7 @@ const LoginForm = () => {
           }
         }}
         variant="primary"
-        size="large"
+        size={buttonSizes.large}
         state={isValid ? "enabled" : "disabled"}
       />
     </View>
