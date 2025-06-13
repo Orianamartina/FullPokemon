@@ -9,7 +9,6 @@ export const usePokemon = () => {
   return useQuery<Pokemon[], Error>({
     queryKey: ["pokemonList"],
     queryFn: async () => {
-      await AsyncStorage.clear();
       const cached = await AsyncStorage.getItem(STORAGE_KEY);
       if (cached) {
         return JSON.parse(cached).slice(0, 20);
