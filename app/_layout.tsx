@@ -25,7 +25,7 @@ export default function RootLayout() {
     return <Text>Loading</Text>;
   }
   return (
-    <Stack>
+    <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="login" options={{ headerShown: false }} />
     </Stack>
   );

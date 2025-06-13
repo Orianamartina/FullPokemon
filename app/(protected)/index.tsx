@@ -1,17 +1,23 @@
-import { Redirect } from "expo-router";
+import PokemonList from "@/components/PokemonList";
+import { colors } from "@/constants/colors";
+import { sizes } from "@/constants/sizes";
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 const home = () => {
-  const isAutheticated = false;
-
-  if (!isAutheticated) return <Redirect href="/login" />;
-
   return (
-    <View>
-      <Text>home</Text>
+    <View style={style.mainContainer}>
+      <PokemonList />
     </View>
   );
 };
 
 export default home;
+
+const style = StyleSheet.create({
+  mainContainer: {
+    backgroundColor: colors.primaryBase,
+    padding: sizes.m,
+    flex: 1,
+  },
+});
