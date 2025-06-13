@@ -2,22 +2,37 @@ import { colors } from "@/constants/colors";
 import { fonts } from "@/constants/fonts";
 import { sizes } from "@/constants/sizes";
 import React from "react";
-import { Pressable, StyleProp, Text, TextStyle, ViewStyle } from "react-native";
+import {
+  Pressable,
+  PressableProps,
+  StyleProp,
+  Text,
+  TextStyle,
+  ViewStyle,
+} from "react-native";
 
-interface Props {
+interface Props extends PressableProps {
   text: string;
-  onClick: () => void;
+  onPress: () => void;
   variant: "primary" | "secondary";
   size: number;
   state?: "enabled" | "disabled";
 }
 
-const Button = ({ text, onClick, variant, size, state = "enabled" }: Props) => {
+const Button = ({
+  text,
+  onPress,
+  variant,
+  size,
+  state = "enabled",
+  ...props
+}: Props) => {
   const variantStyles = styleVariant[variant][state];
   return (
     <Pressable
       style={[genericButtonStyle, { width: size }, variantStyles.button]}
-      onPress={onClick}
+      onPress={onPress}
+      {...props}
     >
       <Text style={[genericTextStyle, variantStyles.text]}>{text}</Text>
     </Pressable>

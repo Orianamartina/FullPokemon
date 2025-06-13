@@ -1,32 +1,23 @@
 import { fetchPokemonList } from "@/api/api";
+import { Pokemon } from "@/types/Pokemon";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+
+const STORAGE_KEY = "pokemonList";
 
 export const usePokemon = () => {
-  const [pokemonList, setPokemonList] = useState<any[] | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
-
-  useEffect(() => {
-    const loadPokemon = async () => {
-      try {
-        const cached = await AsyncStorage.getItem("pokemonList");
-        if (cached) {
-          setPokemonList(JSON.parse(cached).slice(0, 20));
-        } else {
-          const fetched = (await fetchPokemonList()).slice(0, 20);
-          setPokemonList(fetched);
-          await AsyncStorage.setItem("pokemonList", JSON.stringify(fetched));
-        }
-      } catch (e: any) {
-        setError(e);
-      } finally {
-        setLoading(false);
+  return useQuery<Pokemon[], Error>({
+    queryKey: ["pokemonList"],
+    queryFn: async () => {
+      await AsyncStorage.clear();
+      const cached = await AsyncStorage.getItem(STORAGE_KEY);
+      if (cached) {
+        return JSON.parse(cached).slice(0, 20);
+      } else {
+        const fetched = (await fetchPokemonList()).slice(0, 20);
+        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(fetched));
+        return fetched;
       }
-    };
-
-    loadPokemon();
-  }, []);
-
-  return { pokemonList, loading, error };
+    },
+  });
 };

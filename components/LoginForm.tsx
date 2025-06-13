@@ -33,7 +33,7 @@ const LoginForm = () => {
       </View>
       <Button
         text="Log in"
-        onClick={() => {
+        onPress={() => {
           if (isValid) {
             router.replace("/");
           }

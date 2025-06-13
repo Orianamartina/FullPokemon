@@ -14,23 +14,23 @@ import Button from "./ui/Button";
 import Card from "./ui/Card";
 
 const PokemonList = () => {
-  const { pokemonList, loading, error } = usePokemon();
+  const { data, isLoading, error } = usePokemon();
 
-  if (loading) return <ActivityIndicator />;
+  if (isLoading) return <ActivityIndicator />;
   return (
     <View style={style.container}>
       <View style={style.title}>
         <Text style={style.titleText}>My pokemon</Text>
         <Button
           text="+"
-          onClick={() => {}}
+          onPress={() => {}}
           variant="primary"
           size={50}
         ></Button>
       </View>
       {error && <Text>Error: {error.message}</Text>}
       <FlatList
-        data={pokemonList}
+        data={data}
         renderItem={({ item }) => (
           <View style={{ width: "45%" }}>
             <Card {...item} />

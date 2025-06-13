@@ -2,31 +2,34 @@ import { colors, pokemonColorVariants } from "@/constants/colors";
 import { fontStyles } from "@/constants/fonts";
 import { sizes } from "@/constants/sizes";
 import { Pokemon } from "@/types/Pokemon";
-import { capitalize } from "@/utils/stringUtils";
 import { Link } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const Card = (item: Pokemon) => {
-  const { id, name, types, sprite } = item;
+  const { id, name, types, sprites } = item;
   return (
     <Link href={`/pokemon/${id}`} asChild>
       <TouchableOpacity style={style.container}>
         <View style={style.imageContainer}>
           <Image
-            source={{ uri: sprite }}
+            source={{ uri: sprites.front_default }}
             style={{ height: 100, width: 100, resizeMode: "contain" }}
           />
         </View>
-        <Text style={fontStyles.caption.bold}>{capitalize(name)}</Text>
+        <Text style={[fontStyles.caption.bold, style.capitalized]}>{name}</Text>
         <View style={style.typeList}>
           {types.map((t, i) => (
             <Text
               numberOfLines={1}
-              style={[style.type, pokemonColorVariants[t]]}
+              style={[
+                style.type,
+                style.capitalized,
+                pokemonColorVariants[t.type.name],
+              ]}
               key={i}
             >
-              {capitalize(t)}
+              {t.type.name}
             </Text>
           ))}
         </View>
@@ -60,5 +63,8 @@ const style = StyleSheet.create({
   type: {
     padding: 3,
     borderRadius: 3,
+  },
+  capitalized: {
+    textTransform: "capitalize",
   },
 });
