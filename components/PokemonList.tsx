@@ -1,8 +1,7 @@
 import { colors } from "@/constants/colors";
-import { fonts } from "@/constants/fonts";
 import { sizes } from "@/constants/sizes";
-import { usePokemon } from "@/hooks/pokemon/usePokemon";
-import React from "react";
+import { Pokemon } from "@/types/Pokemon";
+import React, { ReactElement } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -10,24 +9,18 @@ import {
   Text,
   View,
 } from "react-native";
-import Button from "./ui/Button";
 import Card from "./ui/Card";
-
-const PokemonList = () => {
-  const { data, isLoading, error } = usePokemon();
-
+interface PokemonListProps {
+  data: Pokemon[] | undefined;
+  isLoading: boolean;
+  error: Error | null;
+  header: ReactElement;
+}
+const PokemonList = ({ data, isLoading, error, header }: PokemonListProps) => {
   if (isLoading) return <ActivityIndicator />;
   return (
     <View style={style.container}>
-      <View style={style.title}>
-        <Text style={style.titleText}>My pokemon</Text>
-        <Button
-          text="+"
-          onPress={() => {}}
-          variant="primary"
-          size={50}
-        ></Button>
-      </View>
+      {header}
       {error && <Text>Error: {error.message}</Text>}
       <FlatList
         data={data}
@@ -58,18 +51,5 @@ const style = StyleSheet.create({
     borderRadius: 10,
     flex: 1,
     overflow: "visible",
-  },
-  title: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    gap: 8,
-    padding: sizes.xl,
-  },
-  titleText: {
-    color: colors.primaryBase,
-    fontFamily: fonts.epilogue.bold,
-    fontSize: sizes.l,
   },
 });

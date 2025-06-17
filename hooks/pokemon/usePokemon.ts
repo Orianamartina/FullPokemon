@@ -7,16 +7,11 @@ const STORAGE_KEY = "pokemonList";
 
 export const usePokemon = () => {
   return useQuery<Pokemon[], Error>({
-    queryKey: ["pokemonList"],
+    queryKey: [STORAGE_KEY],
     queryFn: async () => {
-      const cached = await AsyncStorage.getItem(STORAGE_KEY);
-      if (cached) {
-        return JSON.parse(cached).slice(0, 20);
-      } else {
-        const fetched = (await fetchPokemonList()).slice(0, 20);
-        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(fetched));
-        return fetched;
-      }
+      const fetched = (await fetchPokemonList()).slice(0, 20);
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(fetched));
+      return fetched;
     },
   });
 };
