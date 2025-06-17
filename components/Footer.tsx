@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: sizes.s,
+    marginTop: sizes.m,
   },
   footerText: {
     fontFamily: fonts.inter.regular,

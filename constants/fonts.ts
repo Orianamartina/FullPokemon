@@ -1,3 +1,4 @@
+import { StyleProp, TextStyle } from "react-native";
 import { colors } from "./colors";
 
 export const fonts = {
@@ -30,5 +31,11 @@ export const fontStyles = {
       fontFamily: fonts.inter.bold,
       fontSize: fontSizes.caption,
     },
+  },
+};
+
+export const textStyles: Record<string, StyleProp<TextStyle>> = {
+  capitalized: {
+    textTransform: "capitalize",
   },
 };
