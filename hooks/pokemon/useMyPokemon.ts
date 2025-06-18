@@ -1,7 +1,7 @@
 import { ParsedPokemon } from "@/types/Pokemon";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "expo-router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 const STORAGE_KEY = "myPokemon";
 
@@ -17,16 +17,13 @@ export const useMyPokemon = () => {
       if (stored) {
         setMyPokemon(JSON.parse(stored));
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       setError(e instanceof Error ? e : new Error("Failed to load Pokémon"));
     } finally {
       setIsLoading(false);
     }
   }, []);
 
-  useEffect(() => {
-    loadFromStorage();
-  }, [loadFromStorage]);
   useFocusEffect(
     useCallback(() => {
       loadFromStorage();
@@ -35,7 +32,7 @@ export const useMyPokemon = () => {
   const saveToStorage = async (updatedList: ParsedPokemon[]) => {
     try {
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(updatedList));
-    } catch (e: any) {
+    } catch (e: unknown) {
       setError(e instanceof Error ? e : new Error("Failed to save Pokémon"));
     }
   };
@@ -46,17 +43,14 @@ export const useMyPokemon = () => {
       setMyPokemon(updated);
       await saveToStorage(updated);
     },
-    [myPokemon]
+    []
   );
 
-  const removePokemon = useCallback(
-    async (id: number) => {
-      const updated = myPokemon.filter((p) => p.id !== id);
-      setMyPokemon(updated);
-      await saveToStorage(updated);
-    },
-    [myPokemon]
-  );
+  const removePokemon = useCallback(async (id: number) => {
+    const updated = myPokemon.filter((p) => p.id !== id);
+    setMyPokemon(updated);
+    await saveToStorage(updated);
+  }, []);
 
   const isSaved = useCallback(
     (id: number) => myPokemon.some((p) => p.id === id),
