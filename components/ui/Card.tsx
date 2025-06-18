@@ -1,12 +1,12 @@
 import { colors, pokemonColorVariants } from "@/constants/colors";
 import { fontStyles } from "@/constants/fonts";
 import { sizes } from "@/constants/sizes";
-import { Pokemon } from "@/types/Pokemon";
+import { ParsedPokemon } from "@/types/Pokemon";
 import { Link } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const Card = (item: Pokemon) => {
+const Card = (item: ParsedPokemon) => {
   const { id, name, types, sprites } = item;
   return (
     <Link href={`/pokemon/${id}`} asChild>

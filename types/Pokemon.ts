@@ -2,6 +2,12 @@ export interface PokemonPreview {
   name: string;
   url: string;
 }
+export interface ParsedPokemon {
+  sprites: Sprites;
+  name: string;
+  types: Type[];
+  id: number;
+}
 export interface Pokemon {
   abilities: Ability[];
   base_experience: number;

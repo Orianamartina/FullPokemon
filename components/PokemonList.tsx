@@ -1,6 +1,6 @@
 import { colors } from "@/constants/colors";
 import { sizes } from "@/constants/sizes";
-import { Pokemon } from "@/types/Pokemon";
+import { ParsedPokemon } from "@/types/Pokemon";
 import React, { ReactElement } from "react";
 import {
   ActivityIndicator,
@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import Card from "./ui/Card";
 interface PokemonListProps {
-  data: Pokemon[] | undefined;
+  data: ParsedPokemon[] | undefined;
   isLoading: boolean;
   error: Error | null;
   header: ReactElement;
