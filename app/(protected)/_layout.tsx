@@ -22,6 +22,7 @@ export default function ProtectedLayout() {
           }}
         >
           <Stack.Screen name="index" />
+          <Stack.Screen name="myPokemon" />
           <Stack.Screen name="pokemon/[id]" />
         </Stack>
         <Footer />
