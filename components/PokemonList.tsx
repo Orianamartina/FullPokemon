@@ -51,5 +51,7 @@ const style = StyleSheet.create({
     borderRadius: 10,
     flex: 1,
     overflow: "visible",
+    display: "flex",
+    flexDirection: "column",
   },
 });

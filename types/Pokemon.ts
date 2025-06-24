@@ -1,4 +1,4 @@
-export interface PokemonPreview {
+export interface Preview {
   name: string;
   url: string;
 }

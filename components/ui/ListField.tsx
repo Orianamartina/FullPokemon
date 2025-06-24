@@ -1,19 +1,23 @@
 import { colors } from "@/constants/colors";
-import { fonts, textStyles } from "@/constants/fonts";
+import { textStyles as defaultTextStyles, fonts } from "@/constants/fonts";
 import { sizes } from "@/constants/sizes";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleProp, StyleSheet, Text, TextStyle, View } from "react-native";
 
 const ListField = ({
   title,
   value,
+  textStyles,
 }: {
   title: string;
   value: string | number;
+  textStyles?: StyleProp<TextStyle>;
 }) => {
   return (
     <View style={style.container}>
-      <Text style={[style.title, textStyles.capitalized]}>{title}:</Text>
-      <Text style={[style.value, textStyles.capitalized]}> {value}</Text>
+      <Text style={[style.title, defaultTextStyles.capitalized]}>{title}:</Text>
+      <Text style={[style.value, defaultTextStyles.capitalized, textStyles]}>
+        {value}
+      </Text>
     </View>
   );
 };
@@ -24,6 +28,7 @@ const style = StyleSheet.create({
     padding: sizes.xs,
     display: "flex",
     flexDirection: "row",
+    gap: sizes.xs,
   },
   title: {
     color: colors.ghost,
