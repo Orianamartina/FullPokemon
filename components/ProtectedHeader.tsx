@@ -13,7 +13,7 @@ export default function ProtectedHeader() {
     <View style={[styles.row, styles.header]}>
       <Image source={logo} style={[styles.logo, { width: 120, height: 30 }]} />
       <View style={[styles.row, styles.icons]}>
-        <Pressable onPress={() => router.replace("/myPokemon")}>
+        <Pressable onPress={() => router.dismissTo("/myPokemon")}>
           <Image source={avatar} style={{ height: 30, width: 30 }} />
         </Pressable>
         <LogOut color={colors.white} />

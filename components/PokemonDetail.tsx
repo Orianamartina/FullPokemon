@@ -26,12 +26,18 @@ const PokemonDetail = ({ pokemon }: PokemonDetailProps) => {
         title={name}
       />
       <View>
-        <ListField title="Weight" value={` ${weight / 10} kg`} />
-        <ListField title="Height" value={`${height / 10} M`} />
+        <ListField title="Weight" value={`${weight / 10} kg`} />
+        <ListField
+          title="Height"
+          value={`${height / 10} mts`}
+          textStyles={{ textTransform: "lowercase" }}
+        />
         <ListField title="Species" value={species.name} />
         <ListField
           title="Abilities"
-          value={abilities.map((a) => " " + a.ability?.name).toString()}
+          value={abilities
+            .map((a, i) => (i == 0 ? a.ability?.name : " " + a.ability?.name))
+            .toString()}
         />
 
         <Text style={style.statsTitle}>Stats</Text>
