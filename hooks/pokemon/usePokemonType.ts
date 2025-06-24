@@ -11,5 +11,6 @@ export const usePokemonType = () => {
     isTypeLoading: query.isLoading,
     typeError: query.error,
     types: query.data,
+    ...query,
   };
 };
